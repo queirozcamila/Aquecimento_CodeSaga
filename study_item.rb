@@ -21,8 +21,8 @@ attr_accessor :title, :category
 		db.results_as_hash = true
 		study_itens = db.execute "SELECT title, category FROM study_itens"
 		db.close
-		study_itens.map {|item|
-		puts " - Título: " + item['title'] + " / Categoria: " + item['category']+ "\n" }
+		study_itens.map { |item|
+		puts " - Título: " + item['title'] + " / Categoria: " + item['category'] }
 		self
 	end
 
