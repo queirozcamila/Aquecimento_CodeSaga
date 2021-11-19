@@ -21,13 +21,7 @@ if  (opcao > "0" && opcao < "5")
 			puts "Categoria: " + item.category
 			item.save_to_db
 		elsif opcao == "2"
-			db = SQLite3::Database.open "db/database.db"
-			db.results_as_hash = true
-			study_itens = db.execute "SELECT title, category FROM study_itens"
-			db.close
-			study_itens.map {|item|
-			puts " - Título: " + item['title'] + " / Categoria: " + item['category']+ "\n" }
-			self
+			StudyItem.show_all
 		elsif opcao == "3"
 		else opcao == "4"
 			break

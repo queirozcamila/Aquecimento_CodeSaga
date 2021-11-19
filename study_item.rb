@@ -16,8 +16,14 @@ attr_accessor :title, :category
 		self
 	end
 
-	def show_all
-
+	def self.show_all
+		db = SQLite3::Database.open "db/database.db"
+		db.results_as_hash = true
+		study_itens = db.execute "SELECT title, category FROM study_itens"
+		db.close
+		study_itens.map {|item|
+		puts " - Título: " + item['title'] + " / Categoria: " + item['category']+ "\n" }
+		self
 	end
 
 end
