@@ -26,4 +26,14 @@ attr_accessor :title, :category
 		self
 	end
 
+	def self.search(search_wd)
+		db = SQLite3::Database.open "db/database.db"
+		db.results_as_hash = true
+		study_itens = db.execute "SELECT * FROM study_itens WHERE category LIKE '%#{search_wd}%' OR title LIKE '%#{search_wd}%'"
+		db.close
+		study_itens.map { |item|
+		puts " - Título: " + item['title'] + " / Categoria: " + item['category']}
+		self
+	end
+
 end
