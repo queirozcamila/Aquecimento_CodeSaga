@@ -8,4 +8,16 @@ attr_accessor :title, :category
 		@title = title
 		@category = category
 	end
+
+	def save_to_db
+		db = SQLite3::Database.open "db/database.db"
+		db.execute "INSERT INTO study_itens VALUES('#{ title }', '#{ category }')"
+		db.close
+		self
+	end
+
+	def show_all
+
+	end
+
 end

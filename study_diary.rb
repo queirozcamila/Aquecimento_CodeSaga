@@ -8,13 +8,6 @@ puts " ------- Seja Bem-vindo --------
 Escolha uma opção:"
 opcao = gets.chomp
 
-def save_to_db
-    db = SQLite3::Database.open "db/database.db"
-    db.execute "INSERT INTO tasks VALUES('#{ title }', '#{ category }')"
-    db.close
-    self
-  end
-
 if  (opcao > "0" && opcao < "5")
 	while(opcao != 4)
 		if opcao == "1"
@@ -34,6 +27,7 @@ if  (opcao > "0" && opcao < "5")
 			db.close
 			study_itens.map {|item|
 			puts " - Título: " + item['title'] + " / Categoria: " + item['category']+ "\n" }
+			self
 		elsif opcao == "3"
 		else opcao == "4"
 			break
